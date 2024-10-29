@@ -15,7 +15,7 @@ public class Product {
     private String title;
     private Category category;
     private Integer age;
-    private String details;
+    private String details; // состав и воздействие на кожу.
     private String brend;
     private long price;
     private boolean skinProblem;

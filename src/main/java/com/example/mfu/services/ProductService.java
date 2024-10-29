@@ -1,21 +1,20 @@
 package com.example.mfu.services;
 
-import com.example.mfu.dao.ProductDao;
 import com.example.mfu.entities.Category;
 import com.example.mfu.entities.Product;
+import com.example.mfu.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 @Service
 public class ProductService {
     @Autowired
-    ProductDao productDao;
+    ProductRepository productDao;
 
     public ResponseEntity<List<Product>>getAllProducts() {
         try {
