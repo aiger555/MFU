@@ -6,6 +6,7 @@ import com.example.mfu.entities.Product;
 import com.example.mfu.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,11 +29,14 @@ public class ProductController {
         return productService.getProductsByCategory(category);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("add")
     public String addProduct(@RequestBody Product product){
         return productService.addProduct(product);
     }
 
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("update/{id}")
     public String updateProduct(@PathVariable Integer id, @RequestBody Product product){
         // Find the existing product by ID
@@ -51,6 +55,8 @@ public class ProductController {
         return productService.updateProduct(existingq);
     }
 
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("delete/{id}")
     public String deleteProduct(@PathVariable Integer id){
         return productService.delete(id);

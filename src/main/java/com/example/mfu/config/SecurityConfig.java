@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.OAuth2ResourceServerDsl;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,6 +24,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     @Value("${security.jwt.secret-key}")
@@ -39,6 +41,7 @@ public class SecurityConfig {
                         .requestMatchers("/account").permitAll()
                         .requestMatchers("/account/login").permitAll()
                         .requestMatchers("/account/register").permitAll()
+                        .requestMatchers("/product/add", "product/update/**", "product/delete/**").hasRole("ADMIN")
                         .anyRequest().authenticated() // Corrected line
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
