@@ -43,7 +43,7 @@ public class SecurityConfig {
                         .requestMatchers("/account/login").permitAll()
                         .requestMatchers("/account/register").permitAll()
                         .requestMatchers("/product/add", "product/update/**", "product/delete/**").hasRole("ADMIN")
-                        .anyRequest().authenticated() // Corrected line
+                        .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

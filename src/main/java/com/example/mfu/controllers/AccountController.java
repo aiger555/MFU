@@ -42,7 +42,7 @@ public class AccountController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/profile")
+    @GetMapping("/product/allProducts")
     public ResponseEntity<Object> profile(Authentication auth) {
         var response = new HashMap<String, Object>();
         response.put("Username", auth.getName());
@@ -76,7 +76,12 @@ public class AccountController {
         appUser.setFirstname(registerDto.getFirstname());
         appUser.setUsername(registerDto.getUsername());
         appUser.setEmail(registerDto.getEmail());
-        appUser.setRole(Role.valueOf("USER"));
+        try {
+            Role userRole = Role.valueOf(String.valueOf(registerDto.getRole())); // Dynamically get the role
+            appUser.setRole(userRole);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid role provided");
+        }
         appUser.setPassword(bCryptEncoder.encode(registerDto.getPassword()));
 
         try{
