@@ -73,7 +73,7 @@ public class AccountController {
         var bCryptEncoder = new BCryptPasswordEncoder();
 
         AppUser appUser = new AppUser();
-        appUser.setFirstName(registerDto.getFirstName());
+        appUser.setFirstname(registerDto.getFirstname());
         appUser.setUsername(registerDto.getUsername());
         appUser.setEmail(registerDto.getEmail());
         appUser.setRole(Role.valueOf("USER"));

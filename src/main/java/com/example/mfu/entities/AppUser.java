@@ -11,7 +11,8 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String firstName;
+    @Column(name = "firstname")
+    private String firstname;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -20,5 +21,7 @@ public class AppUser {
     private String username;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 }

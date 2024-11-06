@@ -1,17 +1,14 @@
--- Таблица ролей
-CREATE TABLE roles (
-                       id SERIAL PRIMARY KEY,
-                       name VARCHAR(10) NOT NULL UNIQUE
-);
+-- Таблица для ролей
+CREATE TYPE user_role AS ENUM ('ADMIN', 'USER');
 
--- Таблица пользователей
+-- Таблица users
 CREATE TABLE users (
                        id SERIAL PRIMARY KEY,
                        email VARCHAR(255) NOT NULL UNIQUE,
                        username VARCHAR(255) NOT NULL UNIQUE,
                        firstname VARCHAR(255) NOT NULL,
                        password VARCHAR(255) NOT NULL,
-                       role_id INT REFERENCES roles(id) ON DELETE SET NULL
+                       role user_role NOT NULL
 );
 
 -- Таблица категорий
@@ -40,18 +37,17 @@ CREATE TABLE favorites (
 );
 
 -- Вставка данных в таблицу ролей
-INSERT INTO roles (name) VALUES ('ADMIN'), ('USER');
+--INSERT INTO roles (name) VALUES ('ADMIN'), ('USER');
 
 -- Вставка данных в таблицу категорий
 INSERT INTO categories (name) VALUES ('OIL_SKIN'), ('DRY_SKIN'), ('COMBY_SKIN');
 
 -- Вставка данных в таблицу пользователей
-INSERT INTO users (email, username, firstname, password, role_id) VALUES
-                                                                      ('admin@example.com', 'admin', 'Admin User', 'adminpass', 1),
-                                                                      ('user1@example.com', 'john_doe', 'John', 'password1', 2),
-                                                                      ('user2@example.com', 'jane_smith', 'Jane', 'password2', 2),
-                                                                      ('user3@example.com', 'alice_brown', 'Alice', 'password3', 2),
-                                                                      ('user4@example.com', 'bob_white', 'Bob', 'password4', 2);
+INSERT INTO users (email, username, firstname, password, role) VALUES
+                                                                   ('admin@example.com', 'adminuser', 'Admin', 'adminpass', 'ADMIN'),
+                                                                   ('user1@example.com', 'johndoe', 'John', 'password1', 'USER'),
+                                                                   ('user2@example.com', 'janesmith', 'Jane', 'password2', 'USER');
+
 
 -- Вставка данных в таблицу продуктов
 INSERT INTO products (title, category_id, age, details, brend, price, skin_problem) VALUES
@@ -75,3 +71,10 @@ INSERT INTO favorites (user_id, product_id) VALUES
 --DROP TABLE IF EXISTS users;
 --DROP TABLE IF EXISTS categories;
 --DROP TABLE IF EXISTS roles;
+
+
+
+
+select * from users;
+
+

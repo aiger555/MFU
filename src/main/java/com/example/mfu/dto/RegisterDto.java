@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class RegisterDto {
     @NotEmpty
-    private String firstName;
+    private String firstname;
 
     @NotEmpty
     private String username;
