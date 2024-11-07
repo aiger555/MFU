@@ -1,22 +1,17 @@
 package com.example.mfu.controllers;
 
-import ch.qos.logback.core.model.Model;
 import com.example.mfu.entities.AppUser;
 import com.example.mfu.entities.Category;
 import com.example.mfu.entities.Product;
-import com.example.mfu.entities.Role;
 import com.example.mfu.repository.AppUserRepository;
 import com.example.mfu.repository.ProductRepository;
 import com.example.mfu.services.ProductService;
 import jakarta.validation.Valid;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.security.core.context.SecurityContextHolder;
 import java.util.List;
 
@@ -56,7 +51,7 @@ public class ProductController {
 
         AppUser currentUser = appUserRepository.findByUsername(currentUsername);
 
-        if (currentUser == null || currentUser.getRole() != Role.ADMIN) {
+        if (currentUser == null || currentUser.getRole() != "ADMIN") {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Only admins can create products");
         }
 
@@ -79,7 +74,7 @@ public class ProductController {
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         AppUser currentUser = appUserRepository.findByUsername(currentUsername);
 
-        if (currentUser == null || currentUser.getRole() != Role.ADMIN) {
+        if (currentUser == null || currentUser.getRole() != "ADMIN") {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Only admins can update products");
         }
 
@@ -106,11 +101,11 @@ public class ProductController {
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         AppUser currentUser = appUserRepository.findByUsername(currentUsername);
 
-        if (currentUser == null || currentUser.getRole() != Role.ADMIN) {
+        if (currentUser == null || currentUser.getRole() != "ADMIN") {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Only admins can delete products");
         }
 
-        boolean deleted = productService.delete(id);
+        boolean deleted = Boolean.parseBoolean(productService.delete(id));
         if (deleted) {
             return ResponseEntity.ok("Product deleted successfully");
         } else {

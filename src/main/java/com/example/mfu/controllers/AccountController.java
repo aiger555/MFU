@@ -3,7 +3,6 @@ package com.example.mfu.controllers;
 import com.example.mfu.dto.LoginDto;
 import com.example.mfu.dto.RegisterDto;
 import com.example.mfu.entities.AppUser;
-import com.example.mfu.entities.Role;
 import com.example.mfu.repository.AppUserRepository;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import jakarta.validation.Valid;
@@ -54,7 +53,6 @@ public class AccountController {
         return ResponseEntity.ok(response);
     }
 
-
     @PostMapping("/register")
     public ResponseEntity<Object> register(
             @Valid @RequestBody RegisterDto registerDto, BindingResult result) {
@@ -76,22 +74,21 @@ public class AccountController {
         appUser.setFirstname(registerDto.getFirstname());
         appUser.setUsername(registerDto.getUsername());
         appUser.setEmail(registerDto.getEmail());
-        try {
-            Role userRole = Role.valueOf(String.valueOf(registerDto.getRole())); // Dynamically get the role
-            appUser.setRole(userRole);
-        } catch (IllegalArgumentException e) {
+
+        // Directly set the role as String
+        String role = registerDto.getRole();
+        if (!role.equals("ADMIN") && !role.equals("USER")) {
             return ResponseEntity.badRequest().body("Invalid role provided");
         }
+        appUser.setRole(role);  // Set role as String
         appUser.setPassword(bCryptEncoder.encode(registerDto.getPassword()));
 
-        try{
-            //to check if user is used or not
-            var otherUser = appUserRepository.findByUsername(registerDto.getUsername());
-            if (otherUser != null) {
+        try {
+            // Check if username or email is already used
+            if (appUserRepository.findByUsername(registerDto.getUsername()) != null) {
                 return ResponseEntity.badRequest().body("Username already used");
             }
-            otherUser = appUserRepository.findByEmail(registerDto.getEmail());
-            if (otherUser != null) {
+            if (appUserRepository.findByEmail(registerDto.getEmail()) != null) {
                 return ResponseEntity.badRequest().body("Email already used");
             }
             appUserRepository.save(appUser);
@@ -103,8 +100,7 @@ public class AccountController {
 
             return ResponseEntity.ok(response);
 
-        }catch (Exception ex){
-            System.out.println("There is an exception: ");
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
@@ -113,8 +109,8 @@ public class AccountController {
 
     @PostMapping("/login")
     public ResponseEntity<Object> login(
-            @Valid @RequestBody LoginDto loginDto, BindingResult result
-    ) {
+            @Valid @RequestBody LoginDto loginDto, BindingResult result) {
+
         if (result.hasErrors()) {
             var errorsList = result.getAllErrors();
             var errorsMap = new HashMap<String, String>();
@@ -125,7 +121,8 @@ public class AccountController {
             }
             return ResponseEntity.badRequest().body(errorsMap);
         }
-        try{
+
+        try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             loginDto.getUsername(),
@@ -141,8 +138,7 @@ public class AccountController {
 
             return ResponseEntity.ok(response);
 
-        }catch (Exception ex){
-            System.out.println("There is an exception: ");
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return ResponseEntity.badRequest().body("Bad username or password");
@@ -154,7 +150,7 @@ public class AccountController {
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer(jwtIssuer)
                 .issuedAt(now)
-                .expiresAt(now.plusSeconds(24*3600))
+                .expiresAt(now.plusSeconds(24 * 3600))
                 .subject(appUser.getUsername())
                 .claim("role", appUser.getRole())
                 .build();
@@ -166,6 +162,5 @@ public class AccountController {
                 JwsHeader.with(MacAlgorithm.HS256).build(), claims);
 
         return encoder.encode(params).getTokenValue();
-
     }
 }

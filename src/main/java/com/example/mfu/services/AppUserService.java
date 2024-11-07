@@ -24,10 +24,11 @@ public class AppUserService implements UserDetailsService {
         }
         return User.withUsername(appUser.getUsername())
                 .password(appUser.getPassword())
-                .authorities(new SimpleGrantedAuthority("ROLE_" + appUser.getRole().name()))
+                .authorities(new SimpleGrantedAuthority("ROLE_" + appUser.getRole()))
                 .build();
     }
 }
+
 
 
 
