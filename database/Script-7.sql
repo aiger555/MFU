@@ -1,15 +1,13 @@
--- Таблица для ролей
-CREATE TYPE user_role AS ENUM ('ADMIN', 'USER');
-
--- Таблица users
+-- Table users
 CREATE TABLE users (
                        id SERIAL PRIMARY KEY,
                        email VARCHAR(255) NOT NULL UNIQUE,
                        username VARCHAR(255) NOT NULL UNIQUE,
                        firstname VARCHAR(255) NOT NULL,
                        password VARCHAR(255) NOT NULL,
-                       role user_role NOT NULL
+                       role VARCHAR(50) NOT NULL  -- Role as VARCHAR here
 );
+
 
 -- Таблица категорий
 CREATE TABLE categories (
@@ -36,8 +34,7 @@ CREATE TABLE favorites (
                            product_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE
 );
 
--- Вставка данных в таблицу ролей
---INSERT INTO roles (name) VALUES ('ADMIN'), ('USER');
+
 
 -- Вставка данных в таблицу категорий
 INSERT INTO categories (name) VALUES ('OIL_SKIN'), ('DRY_SKIN'), ('COMBY_SKIN');
@@ -47,6 +44,7 @@ INSERT INTO users (email, username, firstname, password, role) VALUES
                                                                    ('admin@example.com', 'adminuser', 'Admin', 'adminpass', 'ADMIN'),
                                                                    ('user1@example.com', 'johndoe', 'John', 'password1', 'USER'),
                                                                    ('user2@example.com', 'janesmith', 'Jane', 'password2', 'USER');
+
 
 
 -- Вставка данных в таблицу продуктов
@@ -70,11 +68,16 @@ INSERT INTO favorites (user_id, product_id) VALUES
 --DROP TABLE IF EXISTS products;
 --DROP TABLE IF EXISTS users;
 --DROP TABLE IF EXISTS categories;
---DROP TABLE IF EXISTS roles;
+
 
 
 
 
 select * from users;
+select * from favorites;
+select * from products;
+select * from categories;
+
+
 
 
