@@ -18,6 +18,7 @@ public class RegisterDto {
     @Size(min = 6, message = "Min password length is 6 characters")
     private String password;
 
+    @Pattern(regexp = "USER|ADMIN", message = "Role must be either 'USER' or 'ADMIN'")
     private String role;
 
 }
