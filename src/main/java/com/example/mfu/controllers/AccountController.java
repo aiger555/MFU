@@ -41,7 +41,7 @@ public class AccountController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/product/allProducts")
+    @GetMapping("/profile")
     public ResponseEntity<Object> profile(Authentication auth) {
         var response = new HashMap<String, Object>();
         response.put("Username", auth.getName());
@@ -75,16 +75,14 @@ public class AccountController {
         appUser.setUsername(registerDto.getUsername());
         appUser.setEmail(registerDto.getEmail());
 
-        // Directly set the role as String
         String role = registerDto.getRole();
         if (!role.equals("ADMIN") && !role.equals("USER")) {
             return ResponseEntity.badRequest().body("Invalid role provided");
         }
-        appUser.setRole(role);  // Set role as String
+        appUser.setRole(role);
         appUser.setPassword(bCryptEncoder.encode(registerDto.getPassword()));
 
         try {
-            // Check if username or email is already used
             if (appUserRepository.findByUsername(registerDto.getUsername()) != null) {
                 return ResponseEntity.badRequest().body("Username already used");
             }

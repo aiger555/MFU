@@ -30,7 +30,7 @@ public class ProductService {
         return productDao.findByCategory(category);
     }
 
-    public String addProduct(Product product) {
+    public String createProduct(Product product) {
         productDao.save(product);
         return "success";
     }

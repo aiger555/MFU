@@ -24,67 +24,8 @@ public class AppUserService implements UserDetailsService {
         }
         return User.withUsername(appUser.getUsername())
                 .password(appUser.getPassword())
-                .authorities(new SimpleGrantedAuthority("ROLE_" + appUser.getRole()))
+                .roles(appUser.getRole())
                 .build();
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        AppUser appUser = appUserRepository.findByUsername(username);
-//        if (appUser == null) {
-//            var springUser = User.withUsername(appUser.getUsername())
-//                                 .password(appUser.getPassword())
-//                                 .roles(String.valueOf(appUser.getRole()))
-//                                 .build();
-//            return springUser;
-//
-//        }
-//        return null;
-//    }
-
-//TODO: in database add username, firstname columns
