@@ -63,7 +63,7 @@ CREATE TABLE favorites (
 
 -- Скрипты удаления таблиц для очистки (опционально)
 --DROP TABLE IF EXISTS favorites;
---DROP TABLE IF EXISTS products;
+--DROP TABLE IF EXISTS products CASCADE;
 --DROP TABLE IF EXISTS users;
 --DROP TABLE IF EXISTS categories;
 
