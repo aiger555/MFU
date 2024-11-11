@@ -2,10 +2,8 @@
 CREATE TABLE users (
                        id SERIAL PRIMARY KEY,
                        email VARCHAR(255) NOT NULL UNIQUE,
-                       username VARCHAR(255) NOT NULL UNIQUE,
-                       firstname VARCHAR(255) NOT NULL,
                        password VARCHAR(255) NOT NULL,
-                       role VARCHAR(50) NOT NULL  -- Role as VARCHAR here
+                       role VARCHAR(50) NOT NULL
 );
 
 
@@ -37,31 +35,31 @@ CREATE TABLE favorites (
 
 
 -- Вставка данных в таблицу категорий
-INSERT INTO categories (name) VALUES ('OIL_SKIN'), ('DRY_SKIN'), ('COMBY_SKIN');
-
--- Вставка данных в таблицу пользователей
-INSERT INTO users (email, username, firstname, password, role) VALUES
-                                                                   ('admin@example.com', 'adminuser', 'Admin', 'adminpass', 'ADMIN'),
-                                                                   ('user1@example.com', 'johndoe', 'John', 'password1', 'USER'),
-                                                                   ('user2@example.com', 'janesmith', 'Jane', 'password2', 'USER');
+--INSERT INTO categories (name) VALUES ('OIL_SKIN'), ('DRY_SKIN'), ('COMBY_SKIN');
+--
+---- Вставка данных в таблицу пользователей
+--INSERT INTO users (email, username, firstname, password, role) VALUES
+--('admin@example.com', 'adminuser', 'Admin', 'adminpass', 'ADMIN'),
+--('user1@example.com', 'johndoe', 'John', 'password1', 'USER'),
+--('user2@example.com', 'janesmith', 'Jane', 'password2', 'USER');
 
 
 
 -- Вставка данных в таблицу продуктов
-INSERT INTO products (title, category_id, age, details, brend, price, skin_problem) VALUES
-                                                                                        ('Hydrating Serum', 1, 25, 'A hydrating serum for oily skin', 'BrandA', 2500, true),
-                                                                                        ('Anti-Aging Cream', 2, 40, 'Cream for dry and aging skin', 'BrandB', 3000, false),
-                                                                                        ('Daily Moisturizer', 3, 30, 'Suitable for all skin types', 'BrandC', 1500, true),
-                                                                                        ('Night Repair Gel', 1, 35, 'Gel for skin repair at night', 'BrandD', 2000, false),
-                                                                                        ('Brightening Toner', 2, 28, 'Toner for brightening dry skin', 'BrandE', 1200, true);
+--INSERT INTO products (title, category_id, age, details, brend, price, skin_problem) VALUES
+--    ('Hydrating Serum', 1, 25, 'A hydrating serum for oily skin', 'BrandA', 2500, true),
+--    ('Anti-Aging Cream', 2, 40, 'Cream for dry and aging skin', 'BrandB', 3000, false),
+--    ('Daily Moisturizer', 3, 30, 'Suitable for all skin types', 'BrandC', 1500, true),
+--    ('Night Repair Gel', 1, 35, 'Gel for skin repair at night', 'BrandD', 2000, false),
+--    ('Brightening Toner', 2, 28, 'Toner for brightening dry skin', 'BrandE', 1200, true);
 
 -- Вставка данных в таблицу избранных продуктов
-INSERT INTO favorites (user_id, product_id) VALUES
-                                                (2, 1),  -- Пользователь John Doe добавил Hydrating Serum в избранное
-                                                (3, 2),  -- Пользователь Jane Smith добавил Anti-Aging Cream в избранное
-                                                (4, 3),  -- Пользователь Alice Brown добавил Daily Moisturizer в избранное
-                                                (4, 5),  -- Пользователь Alice Brown также добавил Brightening Toner в избранное
-                                                (5, 4);  -- Пользователь Bob White добавил Night Repair Gel в избранное
+--INSERT INTO favorites (user_id, product_id) VALUES
+--    (2, 1),  -- Пользователь John Doe добавил Hydrating Serum в избранное
+--    (3, 2),  -- Пользователь Jane Smith добавил Anti-Aging Cream в избранное
+--    (4, 3),  -- Пользователь Alice Brown добавил Daily Moisturizer в избранное
+--    (4, 5),  -- Пользователь Alice Brown также добавил Brightening Toner в избранное
+--    (5, 4);  -- Пользователь Bob White добавил Night Repair Gel в избранное
 
 -- Скрипты удаления таблиц для очистки (опционально)
 --DROP TABLE IF EXISTS favorites;

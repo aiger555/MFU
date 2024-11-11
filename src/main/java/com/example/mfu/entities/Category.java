@@ -1,5 +1,17 @@
 package com.example.mfu.entities;
 
-public enum Category {
-    OIL_SKIN, DRY_SKIN, COMBY_SKIN
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Table(name = "categories")
+@Data
+public class Category {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String name;
+
 }

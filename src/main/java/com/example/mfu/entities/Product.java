@@ -11,7 +11,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
+
     private Integer age;
     private String details; // состав и воздействие на кожу.
     private String brend;
