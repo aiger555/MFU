@@ -26,6 +26,14 @@ CREATE TABLE products (
                           favorite BOOLEAN NOT null
 );
 
+CREATE TABLE favorites (
+                           id SERIAL PRIMARY KEY,
+                           user_id INTEGER NOT NULL,
+                           product_id INTEGER NOT NULL,
+                           favorite BOOLEAN DEFAULT TRUE,
+                           FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+                           FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE cascade);
+
 
 
 ---- Вставка данных в таблицу пользователей
@@ -42,12 +50,14 @@ CREATE TABLE products (
 --DROP TABLE IF EXISTS categories;
 
 --ALTER TABLE products ADD COLUMN favorite BOOLEAN DEFAULT FALSE;
-
+--SELECT p.* FROM products p JOIN favorites f ON p.id = f.product_id WHERE f.user_id = 1 AND f.favorite = true;
 
 
 select * from users;
 select * from products;
 select * from categories;
+select * from favorites;
+
 
 
 
