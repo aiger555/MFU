@@ -48,4 +48,15 @@ public class ProductService {
     public Product getProductById(Integer id) {
         return productDao.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
     }
+
+    public Product setFavorite(int productId, boolean favorite) {
+        Product product = productDao.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+        product.setFavorite(favorite);
+        return productDao.save(product);
+    }
+
+    public List<Product> getFavoriteProducts() {
+        return productDao.findByFavorite(true);
+    }
 }

@@ -22,21 +22,12 @@ CREATE TABLE products (
                           details TEXT,
                           brend VARCHAR(100),
                           price BIGINT,
-                          skin_problem BOOLEAN NOT NULL
-);
-
--- Таблица избранных продуктов
-CREATE TABLE favorites (
-                           id SERIAL PRIMARY KEY,
-                           user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-                           product_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE
+                          skin_problem BOOLEAN NOT null,
+                          favorite BOOLEAN NOT null
 );
 
 
 
--- Вставка данных в таблицу категорий
---INSERT INTO categories (name) VALUES ('OIL_SKIN'), ('DRY_SKIN'), ('COMBY_SKIN');
---
 ---- Вставка данных в таблицу пользователей
 --INSERT INTO users (email, username, firstname, password, role) VALUES
 --('admin@example.com', 'adminuser', 'Admin', 'adminpass', 'ADMIN'),
@@ -45,34 +36,16 @@ CREATE TABLE favorites (
 
 
 
--- Вставка данных в таблицу продуктов
---INSERT INTO products (title, category_id, age, details, brend, price, skin_problem) VALUES
---    ('Hydrating Serum', 1, 25, 'A hydrating serum for oily skin', 'BrandA', 2500, true),
---    ('Anti-Aging Cream', 2, 40, 'Cream for dry and aging skin', 'BrandB', 3000, false),
---    ('Daily Moisturizer', 3, 30, 'Suitable for all skin types', 'BrandC', 1500, true),
---    ('Night Repair Gel', 1, 35, 'Gel for skin repair at night', 'BrandD', 2000, false),
---    ('Brightening Toner', 2, 28, 'Toner for brightening dry skin', 'BrandE', 1200, true);
-
--- Вставка данных в таблицу избранных продуктов
---INSERT INTO favorites (user_id, product_id) VALUES
---    (2, 1),  -- Пользователь John Doe добавил Hydrating Serum в избранное
---    (3, 2),  -- Пользователь Jane Smith добавил Anti-Aging Cream в избранное
---    (4, 3),  -- Пользователь Alice Brown добавил Daily Moisturizer в избранное
---    (4, 5),  -- Пользователь Alice Brown также добавил Brightening Toner в избранное
---    (5, 4);  -- Пользователь Bob White добавил Night Repair Gel в избранное
-
 -- Скрипты удаления таблиц для очистки (опционально)
---DROP TABLE IF EXISTS favorites;
---DROP TABLE IF EXISTS products CASCADE;
+--DROP TABLE IF EXISTS products;
 --DROP TABLE IF EXISTS users;
 --DROP TABLE IF EXISTS categories;
 
-
+--ALTER TABLE products ADD COLUMN favorite BOOLEAN DEFAULT FALSE;
 
 
 
 select * from users;
-select * from favorites;
 select * from products;
 select * from categories;
 

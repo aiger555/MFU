@@ -21,4 +21,5 @@ public class Product {
     private String brend;
     private long price;
     private boolean skinProblem;
+    private boolean favorite;
 }

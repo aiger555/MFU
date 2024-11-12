@@ -68,6 +68,18 @@ public class ProductController {
         return ResponseEntity.ok(res);
     }
 
+    @PatchMapping("/{productId}/favorite")
+    public ResponseEntity<Product> setFavorite(@PathVariable int productId, @RequestParam boolean favorite) {
+        Product updatedProduct = productService.setFavorite(productId, favorite);
+        return ResponseEntity.ok(updatedProduct);
+    }
+
+    @GetMapping("/favorites")
+    public ResponseEntity<List<Product>> getFavoriteProducts() {
+        List<Product> favoriteProducts = productService.getFavoriteProducts();
+        return ResponseEntity.ok(favoriteProducts);
+    }
+
 
 
 }

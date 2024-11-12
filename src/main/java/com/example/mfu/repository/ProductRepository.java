@@ -14,4 +14,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query(value = "SELECT * FROM product p WHERE p.category=:category ORDER BY RANDOM() LIMIT :numQ", nativeQuery = true)
     List<Product> findRandomProductByCategory(Category category, int numQ);
+
+    List<Product> findByFavorite(boolean favorite);
+
 }
