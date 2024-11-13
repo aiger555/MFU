@@ -36,7 +36,7 @@ public class SecurityConfig {
                         .requestMatchers("/user/**").hasAnyAuthority("USER")
                         .requestMatchers("/adminuser/**").hasAnyAuthority("USER", "ADMIN")
                         .requestMatchers("/product/create", "product/update/**", "product/delete/**").hasAuthority("ADMIN")
-                        .requestMatchers("/product/{productId}/favorite", "/product/favorites").permitAll()
+                        .requestMatchers("/product/{productId}/favorite", "/product/favorites", "product/category/{category}").permitAll()
                         .requestMatchers("/category/create", "/category/update/**", "category/delete/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
