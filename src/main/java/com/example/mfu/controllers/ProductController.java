@@ -4,6 +4,7 @@ import com.example.mfu.entities.AppUser;
 import com.example.mfu.entities.Category;
 import com.example.mfu.entities.Product;
 import com.example.mfu.repository.AppUserRepository;
+import com.example.mfu.repository.CategoryRepository;
 import com.example.mfu.repository.ProductRepository;
 import com.example.mfu.services.ProductService;
 import jakarta.validation.Valid;
@@ -13,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 
@@ -28,15 +31,22 @@ public class ProductController {
     @Autowired
     private AppUserRepository appUserRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts(){
         return productService.getAllProducts();
     }
-
-    @GetMapping("category/{category}")
-    public List<Product> getProductByCategory(@PathVariable Category category){
+    @GetMapping("/category/{categoryId}")
+    public List<Product> getProductByCategoryId(@PathVariable Integer categoryId) {
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Category not found with id " + categoryId));
         return productService.getProductsByCategory(category);
     }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Integer id) {

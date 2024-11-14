@@ -1,7 +1,9 @@
 package com.example.mfu.controllers;
 
 import com.example.mfu.entities.Category;
+import com.example.mfu.entities.Product;
 import com.example.mfu.services.CategoryService;
+import com.example.mfu.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("/all")
     public ResponseEntity<List<Category>> getAllCategories() {
