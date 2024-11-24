@@ -66,7 +66,19 @@ img{
 /* styling for whole site*/
 
 
-/*navbar styling*/
+/*navbar styling (main page, login and register*/
+
+.MFU{
+    display: flex;
+    margin-left: 0%;
+    margin-bottom: 0%;
+    margin-top: 0%;
+    margin-right:0%;
+    color: var(--black-color);
+    font-size: 25px;
+    font-weight: 600;
+}
+
 header{
     background-color: var(--gentle-pink-color);
 }
@@ -82,20 +94,6 @@ header .navbar{
     color: var(--black-color);
 }
 
-.navbar .nav-products{
-    color: var(--black-color);
-}
-
-.navbar .nav-menu .nav-link{
-    color: var(--black-color);
-    
-}
-
-.navbar .nav-menu{
-    display: flex;
-    gap: 80px;
-}
-
 .navbar .logo-text{
     display: flex;
     margin-left: 0%;
@@ -103,12 +101,6 @@ header .navbar{
     margin-top: 0%;
     margin-right:0%;
 }
-
-.main-page .main-logo{
-    margin-left: 70%;
-    margin-top: 50px;
-}
-
 .navbar {
     position: absolute;   /* Фиксирует navbar поверх фонового изображения */
     top: 0;
@@ -120,6 +112,33 @@ header .navbar{
     text-align: center;
   }
 /*navbar styling*/
+
+
+
+
+
+.navbar .nav-products{
+    color: var(--black-color);
+}
+
+.navbar .nav-menu .nav-link{
+    color: var(--black-color)
+    
+}
+
+.navbar .nav-menu{
+    display: flex;
+    gap: 80px;
+}
+
+
+
+.main-page .main-logo{
+    margin-left: 70%;
+    margin-top: 50px;
+}
+
+
 
 /* Задать картинку на весь экран */
 .fullscreen-background {
@@ -162,6 +181,10 @@ header .navbar{
     font-size: 25px;
   }
 
+  .description{
+    text-align: left; 
+  }
+
   .overlay-text .title2{
     font-family: 'EB Garamond', serif;
     font-size: 45px;
@@ -196,3 +219,182 @@ header .navbar{
     color: white;
 }
 /* button shop-now*/
+
+
+
+
+
+
+/*login page*/
+header{
+    background-color: var(--gentle-pink-color);
+}
+.fullscreen-background2 {
+    width: 100vw;         /* Полная ширина экрана */
+    height: 100vh;        /* Полная высота экрана */
+    background-color: var(--pink-color);
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+.login-content{
+    text-align: center;
+}
+
+h1{
+    font-family: 'EB Garamond', serif;
+    font-size: 36px; /* Размер текста 36px */
+    font-weight: 600; /* Полужирный текст */ 
+    margin-bottom: 25px;
+}
+
+.email-input{
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+    padding-right: 80px;
+    padding-left: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+}
+
+.password-input{
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+    padding-right: 80px;
+    padding-left: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.forgot-password{
+    text-align: end;
+    margin: 0 0 5px 0;
+    a{
+        color: var(--black-color);
+        text-decoration: none;
+    }
+}
+
+.agreement{
+    text-align: end;
+    margin-bottom: 40px;
+}
+
+.login-button{
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;              /* Цвет текста кнопки */
+    padding: 5px 35px;       /* Отступы внутри кнопки */
+    text-decoration: none;     /* Убираем подчеркивание текста */
+    font-size: 20px; 
+    border-radius: 5px;         
+    cursor: pointer;           /* Изменяет курсор на указатель при наведении */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+    margin-left: 10px;
+    font-family: 'EB Garamond', serif;
+}
+
+.register-link{
+    text-align: end;
+    a{
+        color: var(--black-color);
+        text-decoration: none;
+    }
+}
+
+
+
+
+
+
+
+/*register page*/
+header{
+    background-color: var(--gentle-pink-color);
+}
+.fullscreen-background3 {
+    width: 100vw;         /* Полная ширина экрана */
+    height: 100vh;        /* Полная высота экрана */
+    background-color: var(--pink-color);
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+.login-content{
+    text-align: center;
+}
+
+h1{
+    font-family: 'EB Garamond', serif;
+    font-size: 25px; /* Размер текста 36px */
+    font-weight: 600; /* Полужирный текст */ 
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.register-first-name, .register-last-name{
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+    padding-right: 80px;
+    padding-left: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    
+}
+
+.email, .password, .confirm-password{
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+    margin: 10px 0 0 0; /* Центрирование по горизонтали */
+    border-radius: 5px;
+    padding-right: 80px;
+    padding-left: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+
+.checkbox{
+    text-align: end;
+}
+
+.create-account-button{
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;              /* Цвет текста кнопки */
+    padding: 5px 15px;       /* Отступы внутри кнопки */
+    text-decoration: none;     /* Убираем подчеркивание текста */
+    font-size: 20px; 
+    border-radius: 5px;         
+    cursor: pointer;           /* Изменяет курсор на указатель при наведении */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+    margin-left: 30%;
+    font-family: 'EB Garamond', serif;
+
+}
+
+p{
+    text-align: end;
+    color: var(--black-color);
+    .loginbutton{
+        color: var(--black-color);
+        font-size: small;
+    }
+}
+

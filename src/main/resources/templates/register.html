@@ -5,50 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create an account</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo/logomfu.png" >
 </head>
 <body>
 
-    <h1 class="title-one">MFU</h1>
-    <h1 class="title-two">MAKE UP FOR YOU</h1>
+    <header>
+        <nav class="navbar">
+            <a href="main-page.html" class="MFU">MFU<br> Make Up For You</a>
+    </header>
     
 
-    <div class="form-register">
-        <h1>CREATE AN ACCOUNT</h1>
+    <main>
+        <div class="fullscreen-background3">
+            <div class="register-content">
+                <h1>CREATE AN ACCOUNT</h1>
+    
+            <form class="register-form">
+                <label for="register-first-name"></label>
+                <input type="text" id="name" class="register-first-name" placeholder="first name" required>
+    
+                <label for="register-last-name"></label>
+                <input type="text" id="last-name" class="register-last-name" placeholder="last name" required> <br>
+    
+                <label for="email"></label>
+                <input type="email" id="email" class="email" placeholder="email" required><br>
+    
+                <label for="password"></label>
+                <input type="password" id="password" class="password" placeholder="password" required minlength="5"><br>
+                <small>Must be at least 5 character long</small> <br>
+    
+                <label for="confirm-password"></label>
+                <input type="password" id="confirm-password" class="confirm-password" placeholder="re-enter password" required>
+    
+                <div class="checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms"><small>please agree to our terms, privacy policy, and rewards program terms to <br> create an account</small></label>
+                </div>
+                <div class="submission">
+                    <button type="submit" class="create-account-button">create account</button><br>
 
-        <form class="register-form">
-            <label for="register-first-name"></label>
-            <input type="text" id="name" placeholder="first name" required>
+                    <p><small>already have an account?</small>
+                        <a href="login.html" class="loginbutton">log in</a>
+                    </p>
+                    
+                </div>
+                
+            </form>
+            </div>  
+        </div>
+    </main>
 
-            <label for="register-last-name"></label>
-            <input type="text" id="last-name" placeholder="last name" required> <br>
-
-            <label for="email"></label>
-            <input type="email" id="email" placeholder="email" required><br>
-
-            <label for="password"></label>
-            <input type="password" id="password" placeholder="password" required minlength="5"><br>
-            <small>Must be at least 5 character long</small> <br>
-
-            <label for="confirm-password"></label>
-            <input type="password" id="confirm-password" placeholder="re-enter password" required>
-
-            <div class="checkbox">
-                <input type="checkbox" id="terms" required>
-                <label for="terms">please agree to our terms, privacy policy, and rewards program terms to <br> create an account</label>
-            </div>
-
-            <div class="submission">
-                <button type="submit">create account</button><br>
-                <small>already have an account?</small><br>
-                <a href="login.html">log in</a>
-            </div>
-            
-        </form>
-
-
-
-
-    </div>
+    
 
     
 </body>
