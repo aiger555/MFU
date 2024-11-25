@@ -4,3 +4,5 @@
 
 Presentation -
 https://drive.google.com/drive/folders/1AH61Gw2ziVvjUW0JeDbYpBOOeWnjHHtH?usp=sharing
+
+Plagiarism check - https://drive.google.com/file/d/1Cxsz8Rf7R7EyWU1yS5KcpR6hgwyU8EZa/view?usp=drive_link
