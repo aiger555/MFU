@@ -9,14 +9,19 @@ import com.example.mfu.repository.ProductRepository;
 import com.example.mfu.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -33,6 +38,10 @@ public class ProductController {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Value("${file.upload-dir}")
+    private String uploadDir;
+
 
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts(){
@@ -90,6 +99,36 @@ public class ProductController {
         return ResponseEntity.ok(favoriteProducts);
     }
 
+    @PostMapping("/{id}/upload-photo")
+    public ResponseEntity<Object> uploadPhoto(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
+        try {
+            Product product = productRepository.findById(id)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+
+            String contentType = file.getContentType();
+            if (contentType == null || !(contentType.equals("image/png") || contentType.equals("image/jpeg"))) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Only PNG and JPEG files are allowed");
+            }
+
+            String uploadDir = "uploads/products/" + id;
+            File dir = new File(uploadDir);
+            if (!dir.exists()) dir.mkdirs();
+
+            String originalFilename = file.getOriginalFilename();
+            String fileName = UUID.randomUUID() + "_" + originalFilename;
+            File destinationFile = new File(dir, fileName);
+            file.transferTo(destinationFile);
+
+            String photoPath = uploadDir + "/" + fileName;
+            product.getPhotos().add(photoPath);
+            productRepository.save(product);
+
+            return ResponseEntity.ok("Photo uploaded successfully: " + photoPath);
+
+        } catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "File upload failed", e);
+        }
+    }
 
 
 }
