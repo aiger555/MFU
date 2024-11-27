@@ -2,7 +2,9 @@
 
 Трелло - https://trello.com/invite/b/6718886d3090675226b165bf/ATTIe485f071ff35077391c230bd8e64ad3d0507D37E/mfu
 
-Presentation -
+POSTMAN -
 https://drive.google.com/drive/folders/1AH61Gw2ziVvjUW0JeDbYpBOOeWnjHHtH?usp=sharing
 
 Plagiarism check - https://drive.google.com/file/d/1Cxsz8Rf7R7EyWU1yS5KcpR6hgwyU8EZa/view?usp=drive_link
+
+Presentation - https://www.canva.com/design/DAGXBzSUN6o/tFQdqDmt6GhyVCMuMg_yhw/edit?utm_content=DAGXBzSUN6o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
